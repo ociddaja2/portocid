@@ -14,9 +14,10 @@ const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.s
 <header class="fixed inset-x-0 top-0 z-40 border-b border-ink-200/70 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-ink-800/70 dark:bg-ink-950/70 dark:supports-[backdrop-filter]:bg-ink-950/50">
 	<div class="container-page flex items-center justify-between py-3">
 		<a href="/" class="inline-flex items-center gap-2 rounded-md px-2 py-1 font-medium tracking-tight hover:bg-ink-100 dark:hover:bg-ink-900/40">
+			<!-- Logo Ocid -->
 			<span class="inline-block h-2.5 w-2.5 rounded-full bg-ink-900 dark:bg-ink-50"></span>
-			<span class="hidden sm:inline">Porto</span>
-			<span class="sm:hidden">P</span>
+			<span class="hidden sm:inline">Ocid</span>
+			<span class="sm:hidden">Ocid</span>
 		</a>
 
 		<nav aria-label="Primary" class="hidden items-center gap-1 md:flex">
@@ -38,19 +39,83 @@ const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.s
 		</nav>
 
 		<div class="flex items-center gap-2">
+			<details class="group relative md:hidden">
+				<summary
+					class="list-none inline-flex h-10 w-10 items-center justify-center rounded-md border border-ink-200 bg-white text-ink-700 shadow-sm transition hover:bg-ink-50 dark:border-ink-800 dark:bg-ink-950 dark:text-ink-200 dark:hover:bg-ink-900/40"
+					aria-label="Open menu"
+				>
+					<span class="sr-only">Open menu</span>
+					<svg class="h-5 w-5 group-open:hidden" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path
+							d="M4 7h16M4 12h16M4 17h16"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+						/>
+					</svg>
+					<svg class="hidden h-5 w-5 group-open:block" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path
+							d="M6 6l12 12M18 6L6 18"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+						/>
+					</svg>
+				</summary>
+
+				<div
+					class="absolute right-0 top-12 z-50 w-[min(18rem,calc(100vw-2rem))] rounded-2xl border border-ink-200 bg-white p-2 shadow-soft dark:border-ink-800 dark:bg-ink-950"
+				>
+					<nav aria-label="Mobile menu" class="grid gap-1">
+						{
+							nav.map((item) => (
+								<a
+									href={item.href}
+									class:list={[
+										'rounded-xl px-3 py-2 text-sm transition-colors',
+										isActive(item.href)
+											? 'bg-ink-900 text-white dark:bg-ink-50 dark:text-ink-950'
+											: 'text-ink-700 hover:bg-ink-100 dark:text-ink-200 dark:hover:bg-ink-900/40',
+									]}
+								>
+									{item.label}
+								</a>
+							))
+						}
+						<a href="/contact" class="btn btn-primary mt-1 w-full">Contact</a>
+					</nav>
+				</div>
+			</details>
+
 			<button
 				type="button"
 				onclick="window.__themeToggle && window.__themeToggle()"
-				class="inline-flex items-center justify-center rounded-md border border-ink-200 bg-white px-3 py-2 text-sm text-ink-700 shadow-sm transition hover:bg-ink-50 dark:border-ink-800 dark:bg-ink-950 dark:text-ink-200 dark:hover:bg-ink-900/40"
+				class="inline-flex items-center justify-center rounded-md border border-ink-200 bg-white px-3 py-3 text-sm text-ink-700 shadow-sm transition hover:bg-ink-50 dark:border-ink-800 dark:bg-ink-950 dark:text-ink-200 dark:hover:bg-ink-900/40"
 				aria-label="Toggle dark mode"
 			>
 				<span class="hidden sm:inline">
-					<span class="hidden dark:inline">Light</span>
-					<span class="dark:hidden">Dark</span>
+					<span class="hidden dark:inline">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sun" viewBox="0 0 16 16">
+							<path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+						  </svg>
+					</span>
+					<span class="dark:hidden">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
+							<path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286"/>
+						  </svg>
+					</span>
 				</span>
 				<span class="sm:hidden">
-					<span class="hidden dark:inline">Sun</span>
-					<span class="dark:hidden">Moon</span>
+					<span class="hidden dark:inline">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sun" viewBox="0 0 16 16">
+							<path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+						  </svg>
+					</span>
+					<span class="dark:hidden">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
+							<path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286"/>
+						  </svg>
+					</span>
 				</span>
 			</button>
 
@@ -58,29 +123,11 @@ const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.s
 				href="/contact"
 				class="hidden rounded-md bg-ink-900 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-ink-800 dark:bg-ink-50 dark:text-ink-950 dark:hover:bg-ink-200 md:inline-flex"
 			>
-				Hire me
+				Lets Talk ->
 			</a>
 		</div>
 	</div>
 
-	<nav aria-label="Primary mobile" class="border-t border-ink-200/70 bg-white/70 px-2 py-2 backdrop-blur dark:border-ink-800/70 dark:bg-ink-950/50 md:hidden">
-		<div class="container-page grid grid-cols-5 gap-1 px-0">
-			{
-				nav.map((item) => (
-					<a
-						href={item.href}
-						class:list={[
-							'rounded-md px-2 py-2.5 text-center text-xs transition-colors',
-							isActive(item.href)
-								? 'bg-ink-900 text-white dark:bg-ink-50 dark:text-ink-950'
-								: 'text-ink-600 hover:bg-ink-100 hover:text-ink-900 dark:text-ink-300 dark:hover:bg-ink-900/50 dark:hover:text-ink-50',
-						]}
-					>
-						{item.label}
-					</a>
-				))
-			}
-		</div>
-	</nav>
+	<!-- Mobile menu moved to top-right hamburger icon -->
 </header>
 

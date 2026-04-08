@@ -49,6 +49,45 @@ html.dark {
   }
 }
 
+@layer utilities {
+  @keyframes bg-float {
+    0% {
+      transform: translate3d(-6%, -4%, 0) scale(1);
+      filter: blur(44px);
+      opacity: 0.55;
+    }
+    50% {
+      transform: translate3d(6%, 4%, 0) scale(1.06);
+      filter: blur(52px);
+      opacity: 0.45;
+    }
+    100% {
+      transform: translate3d(-6%, -4%, 0) scale(1);
+      filter: blur(44px);
+      opacity: 0.55;
+    }
+  }
+
+  .bg-animated-gradient {
+    background: radial-gradient(40% 55% at 20% 20%, rgb(226 232 240 / 0.9), transparent 60%),
+      radial-gradient(45% 55% at 80% 30%, rgb(203 213 225 / 0.65), transparent 60%),
+      radial-gradient(40% 60% at 45% 85%, rgb(148 163 184 / 0.45), transparent 65%);
+    animation: bg-float 16s ease-in-out infinite;
+  }
+
+  html.dark .bg-animated-gradient {
+    background: radial-gradient(40% 55% at 20% 20%, rgb(51 65 85 / 0.45), transparent 60%),
+      radial-gradient(45% 55% at 80% 30%, rgb(30 41 59 / 0.5), transparent 60%),
+      radial-gradient(40% 60% at 45% 85%, rgb(15 23 42 / 0.55), transparent 65%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bg-animated-gradient {
+      animation: none;
+    }
+  }
+}
+
 ::selection {
   background: rgb(15 23 42 / 0.18);
 }

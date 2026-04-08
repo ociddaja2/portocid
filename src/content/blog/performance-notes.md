@@ -1,11 +1,11 @@
 ---
-title: Catatan Performance Portfolio
-description: Checklist singkat agar Lighthouse mendekati 100.
-pubDate: 2026-04-08
+title: Catatan Performance Portofolio ini
+description: Checklist singkat.
+pubDate: 2026-04-09
 tags: [performance, seo]
 ---
 
-Checklist yang aku pakai untuk web portfolio minimalis:
+Checklist yang dipakai untuk web porto ini:
 
 - **SSG** + HTML minify
 - **Gambar**: gunakan `astro:assets` dan lazy load

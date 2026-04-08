@@ -11,14 +11,15 @@ const pathname = Astro.url?.pathname ?? '/';
 const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
 ---
 
-<header class="fixed inset-x-0 top-0 z-40 border-b border-ink-200/70 bg-white/80 backdrop-blur dark:border-ink-800/70 dark:bg-ink-950/70">
-	<div class="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-		<a href="/" class="inline-flex items-center gap-2 font-medium tracking-tight">
+<header class="fixed inset-x-0 top-0 z-40 border-b border-ink-200/70 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-ink-800/70 dark:bg-ink-950/70 dark:supports-[backdrop-filter]:bg-ink-950/50">
+	<div class="container-page flex items-center justify-between py-3">
+		<a href="/" class="inline-flex items-center gap-2 rounded-md px-2 py-1 font-medium tracking-tight hover:bg-ink-100 dark:hover:bg-ink-900/40">
 			<span class="inline-block h-2.5 w-2.5 rounded-full bg-ink-900 dark:bg-ink-50"></span>
-			<span>Porto</span>
+			<span class="hidden sm:inline">Porto</span>
+			<span class="sm:hidden">P</span>
 		</a>
 
-		<nav aria-label="Primary" class="hidden items-center gap-1 sm:flex">
+		<nav aria-label="Primary" class="hidden items-center gap-1 md:flex">
 			{
 				nav.map((item) => (
 					<a
@@ -43,27 +44,33 @@ const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.s
 				class="inline-flex items-center justify-center rounded-md border border-ink-200 bg-white px-3 py-2 text-sm text-ink-700 shadow-sm transition hover:bg-ink-50 dark:border-ink-800 dark:bg-ink-950 dark:text-ink-200 dark:hover:bg-ink-900/40"
 				aria-label="Toggle dark mode"
 			>
-				<span class="hidden dark:inline">Light</span>
-				<span class="dark:hidden">Dark</span>
+				<span class="hidden sm:inline">
+					<span class="hidden dark:inline">Light</span>
+					<span class="dark:hidden">Dark</span>
+				</span>
+				<span class="sm:hidden">
+					<span class="hidden dark:inline">Sun</span>
+					<span class="dark:hidden">Moon</span>
+				</span>
 			</button>
 
 			<a
 				href="/contact"
-				class="hidden rounded-md bg-ink-900 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-ink-800 dark:bg-ink-50 dark:text-ink-950 dark:hover:bg-ink-200 sm:inline-flex"
+				class="hidden rounded-md bg-ink-900 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-ink-800 dark:bg-ink-50 dark:text-ink-950 dark:hover:bg-ink-200 md:inline-flex"
 			>
 				Hire me
 			</a>
 		</div>
 	</div>
 
-	<nav aria-label="Primary mobile" class="border-t border-ink-200/70 bg-white/70 px-2 py-2 backdrop-blur dark:border-ink-800/70 dark:bg-ink-950/50 sm:hidden">
-		<div class="mx-auto grid w-full max-w-5xl grid-cols-5 gap-1">
+	<nav aria-label="Primary mobile" class="border-t border-ink-200/70 bg-white/70 px-2 py-2 backdrop-blur dark:border-ink-800/70 dark:bg-ink-950/50 md:hidden">
+		<div class="container-page grid grid-cols-5 gap-1 px-0">
 			{
 				nav.map((item) => (
 					<a
 						href={item.href}
 						class:list={[
-							'rounded-md px-2 py-2 text-center text-xs transition-colors',
+							'rounded-md px-2 py-2.5 text-center text-xs transition-colors',
 							isActive(item.href)
 								? 'bg-ink-900 text-white dark:bg-ink-50 dark:text-ink-950'
 								: 'text-ink-600 hover:bg-ink-100 hover:text-ink-900 dark:text-ink-300 dark:hover:bg-ink-900/50 dark:hover:text-ink-50',

@@ -11,6 +11,44 @@ html.dark {
   color-scheme: dark;
 }
 
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply mt-14;
+  }
+
+  .card {
+    @apply rounded-2xl border border-ink-200 bg-white shadow-sm dark:border-ink-800 dark:bg-ink-950;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium shadow-sm transition;
+  }
+
+  .btn-primary {
+    @apply bg-ink-900 text-white hover:bg-ink-800 dark:bg-ink-50 dark:text-ink-950 dark:hover:bg-ink-200;
+  }
+
+  .btn-ghost {
+    @apply border border-ink-200 bg-white text-ink-800 hover:bg-ink-50 dark:border-ink-800 dark:bg-ink-950 dark:text-ink-100 dark:hover:bg-ink-900/40;
+  }
+
+  .link {
+    @apply underline decoration-ink-300 underline-offset-4 transition hover:decoration-ink-800 dark:decoration-ink-700 dark:hover:decoration-ink-200;
+  }
+}
+
 ::selection {
   background: rgb(15 23 42 / 0.18);
 }

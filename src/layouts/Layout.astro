@@ -82,7 +82,7 @@ const canonical = canonicalURL.toString();
 			})();
 		</script>
 	</head>
-	<body class="bg-white text-ink-900 antialiased dark:bg-ink-950 dark:text-ink-50">
+	<body class="bg-white text-ink-900 dark:bg-ink-950 dark:text-ink-50">
 		<a
 			href="#content"
 			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 rounded-md bg-white px-3 py-2 text-sm shadow-soft dark:bg-ink-900"
@@ -91,7 +91,14 @@ const canonical = canonicalURL.toString();
 		</a>
 
 		<Header />
-		<main id="content" class="mx-auto w-full max-w-5xl px-4 pb-16 pt-24 sm:px-6 lg:px-8">
+		<div class="pointer-events-none fixed inset-0 -z-10">
+			<div
+				class="absolute left-1/2 top-[-12rem] h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-ink-200/30 blur-3xl dark:bg-ink-800/20"
+			>
+			</div>
+		</div>
+
+		<main id="content" class="container-page pb-16 pt-28 sm:pt-32">
 			<slot />
 		</main>
 		<Footer />

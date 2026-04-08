@@ -4,54 +4,54 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Contact — Your Name" description="Cara menghubungi dan link sosial.">
 	<section class="space-y-5">
-		<h1 class="text-3xl font-semibold tracking-tight">Contact</h1>
+		<h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Contact</h1>
 		<p class="max-w-2xl text-sm leading-relaxed text-ink-600 dark:text-ink-300">
 			Paling cepat lewat email. Kamu juga bisa cek profil sosial atau repo project.
 		</p>
 	</section>
 
-	<section class="mt-10 grid gap-5 lg:grid-cols-2">
-		<div class="rounded-2xl border border-ink-200 bg-white p-6 shadow-sm dark:border-ink-800 dark:bg-ink-950 sm:p-8">
-			<h2 class="text-sm font-semibold tracking-tight">Email</h2>
+	<section class="mt-10 grid gap-5 sm:gap-6 lg:grid-cols-2">
+		<div class="card p-6 sm:p-8">
+			<h2 class="text-base font-semibold tracking-tight">Email</h2>
 			<p class="mt-2 text-sm text-ink-600 dark:text-ink-300">
 				Kirim brief singkat: tujuan, scope, deadline, dan budget (kalau ada).
 			</p>
 			<a
 				href="mailto:hello@example.com?subject=Project%20Inquiry"
-				class="mt-4 inline-flex rounded-md bg-ink-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-ink-800 dark:bg-ink-50 dark:text-ink-950 dark:hover:bg-ink-200"
+				class="btn btn-primary mt-4"
 			>
 				hello@example.com
 			</a>
 		</div>
 
-		<div class="rounded-2xl border border-ink-200 bg-white p-6 shadow-sm dark:border-ink-800 dark:bg-ink-950 sm:p-8">
-			<h2 class="text-sm font-semibold tracking-tight">Social</h2>
+		<div class="card p-6 sm:p-8">
+			<h2 class="text-base font-semibold tracking-tight">Social</h2>
 			<ul class="mt-4 space-y-3 text-sm">
 				<li>
 					<a
-						class="text-ink-700 underline decoration-ink-300 underline-offset-4 hover:decoration-ink-700 dark:text-ink-200 dark:decoration-ink-700 dark:hover:decoration-ink-200"
+						class="text-ink-700 dark:text-ink-200"
 						href="https://github.com/"
 						rel="me"
 					>
-						GitHub
+						<span class="link">GitHub</span>
 					</a>
 				</li>
 				<li>
 					<a
-						class="text-ink-700 underline decoration-ink-300 underline-offset-4 hover:decoration-ink-700 dark:text-ink-200 dark:decoration-ink-700 dark:hover:decoration-ink-200"
+						class="text-ink-700 dark:text-ink-200"
 						href="https://www.linkedin.com/"
 						rel="me"
 					>
-						LinkedIn
+						<span class="link">LinkedIn</span>
 					</a>
 				</li>
 				<li>
 					<a
-						class="text-ink-700 underline decoration-ink-300 underline-offset-4 hover:decoration-ink-700 dark:text-ink-200 dark:decoration-ink-700 dark:hover:decoration-ink-200"
+						class="text-ink-700 dark:text-ink-200"
 						href="https://x.com/"
 						rel="me"
 					>
-						X / Twitter
+						<span class="link">X / Twitter</span>
 					</a>
 				</li>
 			</ul>

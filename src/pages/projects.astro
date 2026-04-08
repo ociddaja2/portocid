@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) =>
+	(a.data.featured === b.data.featured ? 0 : a.data.featured ? -1 : 1)
+);
+
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'ItemList',
+	itemListElement: projects.map((p, idx) => ({
+		'@type': 'ListItem',
+		position: idx + 1,
+		url: new URL(`/projects#${p.slug}`, Astro.site ?? Astro.url).toString(),
+		name: p.data.title,
+		description: p.data.description,
+	})),
+};
+
+const jsonLdString = JSON.stringify(jsonLd);
+---
+
+<Layout title="Projects — Your Name" description="Kumpulan project pilihan dengan tech stack dan link.">
+	<script type="application/ld+json" is:inline set:html={jsonLdString} />
+
+	<section class="space-y-5">
+		<h1 class="text-3xl font-semibold tracking-tight">Projects</h1>
+		<p class="max-w-2xl text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+			Grid project minimalis: cover, deskripsi singkat, tech stack, dan link GitHub/Live.
+		</p>
+	</section>
+
+	<section class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+		{projects.map((project) => (
+			<div id={project.slug}>
+				<ProjectCard project={project} />
+			</div>
+		))}
+	</section>
+</Layout>
+

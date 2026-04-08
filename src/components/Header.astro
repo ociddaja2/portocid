@@ -1,0 +1,79 @@
+---
+const nav = [
+	{ href: '/', label: 'Home' },
+	{ href: '/about', label: 'About' },
+	{ href: '/projects', label: 'Projects' },
+	{ href: '/blog', label: 'Blog' },
+	{ href: '/contact', label: 'Contact' },
+];
+
+const pathname = Astro.url?.pathname ?? '/';
+const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
+---
+
+<header class="fixed inset-x-0 top-0 z-40 border-b border-ink-200/70 bg-white/80 backdrop-blur dark:border-ink-800/70 dark:bg-ink-950/70">
+	<div class="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+		<a href="/" class="inline-flex items-center gap-2 font-medium tracking-tight">
+			<span class="inline-block h-2.5 w-2.5 rounded-full bg-ink-900 dark:bg-ink-50"></span>
+			<span>Porto</span>
+		</a>
+
+		<nav aria-label="Primary" class="hidden items-center gap-1 sm:flex">
+			{
+				nav.map((item) => (
+					<a
+						href={item.href}
+						class:list={[
+							'rounded-md px-3 py-2 text-sm transition-colors',
+							isActive(item.href)
+								? 'bg-ink-900 text-white dark:bg-ink-50 dark:text-ink-950'
+								: 'text-ink-600 hover:bg-ink-100 hover:text-ink-900 dark:text-ink-300 dark:hover:bg-ink-900/50 dark:hover:text-ink-50',
+						]}
+					>
+						{item.label}
+					</a>
+				))
+			}
+		</nav>
+
+		<div class="flex items-center gap-2">
+			<button
+				type="button"
+				onclick="window.__themeToggle && window.__themeToggle()"
+				class="inline-flex items-center justify-center rounded-md border border-ink-200 bg-white px-3 py-2 text-sm text-ink-700 shadow-sm transition hover:bg-ink-50 dark:border-ink-800 dark:bg-ink-950 dark:text-ink-200 dark:hover:bg-ink-900/40"
+				aria-label="Toggle dark mode"
+			>
+				<span class="hidden dark:inline">Light</span>
+				<span class="dark:hidden">Dark</span>
+			</button>
+
+			<a
+				href="/contact"
+				class="hidden rounded-md bg-ink-900 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-ink-800 dark:bg-ink-50 dark:text-ink-950 dark:hover:bg-ink-200 sm:inline-flex"
+			>
+				Hire me
+			</a>
+		</div>
+	</div>
+
+	<nav aria-label="Primary mobile" class="border-t border-ink-200/70 bg-white/70 px-2 py-2 backdrop-blur dark:border-ink-800/70 dark:bg-ink-950/50 sm:hidden">
+		<div class="mx-auto grid w-full max-w-5xl grid-cols-5 gap-1">
+			{
+				nav.map((item) => (
+					<a
+						href={item.href}
+						class:list={[
+							'rounded-md px-2 py-2 text-center text-xs transition-colors',
+							isActive(item.href)
+								? 'bg-ink-900 text-white dark:bg-ink-50 dark:text-ink-950'
+								: 'text-ink-600 hover:bg-ink-100 hover:text-ink-900 dark:text-ink-300 dark:hover:bg-ink-900/50 dark:hover:text-ink-50',
+						]}
+					>
+						{item.label}
+					</a>
+				))
+			}
+		</div>
+	</nav>
+</header>
+

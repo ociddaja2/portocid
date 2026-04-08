@@ -1,11 +1,123 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import ProjectCard from '../components/ProjectCard.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const projects = (await getCollection('projects')).slice(0, 3);
+const posts = (await getCollection('blog'))
+	.filter((p) => !p.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="Your Name — Minimal Portfolio"
+	description="Portfolio pribadi minimalis dengan Astro + Tailwind (SSG, cepat, SEO-friendly)."
+>
+	<section class="space-y-5">
+		<p class="text-sm font-medium text-ink-600 dark:text-ink-300">Hi, I’m</p>
+		<h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Your Name</h1>
+		<p class="max-w-2xl text-base leading-relaxed text-ink-600 dark:text-ink-300">
+			Frontend / Full‑stack developer yang suka desain bersih, aksesibel, dan performa tinggi.
+		</p>
+		<div class="flex flex-wrap gap-3 pt-2">
+			<a
+				href="/projects"
+				class="rounded-md bg-ink-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-ink-800 dark:bg-ink-50 dark:text-ink-950 dark:hover:bg-ink-200"
+			>
+				Lihat Projects
+			</a>
+			<a
+				href="/contact"
+				class="rounded-md border border-ink-200 bg-white px-4 py-2.5 text-sm font-medium text-ink-800 shadow-sm transition hover:bg-ink-50 dark:border-ink-800 dark:bg-ink-950 dark:text-ink-100 dark:hover:bg-ink-900/40"
+			>
+				Contact
+			</a>
+		</div>
+	</section>
+
+	<section class="mt-14 grid gap-8 lg:grid-cols-2 lg:gap-10">
+		<div class="space-y-3">
+			<h2 class="text-lg font-semibold tracking-tight">About</h2>
+			<p class="text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+				Aku membangun website dan UI yang cepat, jelas, dan mudah dipakai. Fokus pada core web vitals,
+				SSG, dan UX sederhana.
+			</p>
+			<a
+				href="/about"
+				class="inline-flex items-center text-sm font-medium text-ink-800 underline decoration-ink-300 underline-offset-4 hover:decoration-ink-800 dark:text-ink-100 dark:decoration-ink-700 dark:hover:decoration-ink-200"
+			>
+				Baca lebih lanjut
+			</a>
+		</div>
+		<div class="space-y-3">
+			<h2 class="text-lg font-semibold tracking-tight">Now</h2>
+			<ul class="space-y-2 text-sm text-ink-600 dark:text-ink-300">
+				<li>Building minimal websites with Astro</li>
+				<li>Designing reusable UI components</li>
+				<li>Writing short notes on performance</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="mt-14 space-y-6">
+		<div class="flex items-end justify-between gap-4">
+			<h2 class="text-lg font-semibold tracking-tight">Projects</h2>
+			<a
+				href="/projects"
+				class="text-sm text-ink-600 underline decoration-ink-300 underline-offset-4 hover:text-ink-900 hover:decoration-ink-700 dark:text-ink-300 dark:decoration-ink-700 dark:hover:text-ink-50 dark:hover:decoration-ink-200"
+			>
+				View all
+			</a>
+		</div>
+		<div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+			{projects.map((project) => <ProjectCard project={project} />)}
+		</div>
+	</section>
+
+	<section class="mt-14 space-y-5">
+		<div class="flex items-end justify-between gap-4">
+			<h2 class="text-lg font-semibold tracking-tight">Blog</h2>
+			<a
+				href="/blog"
+				class="text-sm text-ink-600 underline decoration-ink-300 underline-offset-4 hover:text-ink-900 hover:decoration-ink-700 dark:text-ink-300 dark:decoration-ink-700 dark:hover:text-ink-50 dark:hover:decoration-ink-200"
+			>
+				View all
+			</a>
+		</div>
+		<ul class="divide-y divide-ink-200 overflow-hidden rounded-xl border border-ink-200 bg-white dark:divide-ink-800 dark:border-ink-800 dark:bg-ink-950">
+			{posts.map((post) => (
+				<li class="p-5">
+					<a
+						href={`/blog/${post.slug}`}
+						class="block space-y-1 rounded-md transition hover:bg-ink-50 dark:hover:bg-ink-900/40"
+					>
+						<p class="text-sm font-medium">{post.data.title}</p>
+						<p class="text-sm text-ink-600 dark:text-ink-300">{post.data.description}</p>
+					</a>
+				</li>
+			))}
+		</ul>
+	</section>
+
+	<section class="mt-14 rounded-2xl border border-ink-200 bg-ink-50 p-6 dark:border-ink-800 dark:bg-ink-900/20 sm:p-8">
+		<h2 class="text-lg font-semibold tracking-tight">Let’s build something clean.</h2>
+		<p class="mt-2 max-w-2xl text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+			Kirim email untuk kolaborasi, freelance, atau sekadar ngobrol tentang Astro dan performance.
+		</p>
+		<div class="mt-4 flex flex-wrap gap-3">
+			<a
+				href="mailto:hello@example.com"
+				class="rounded-md bg-ink-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-ink-800 dark:bg-ink-50 dark:text-ink-950 dark:hover:bg-ink-200"
+			>
+				Email me
+			</a>
+			<a
+				href="/contact"
+				class="rounded-md border border-ink-200 bg-white px-4 py-2.5 text-sm font-medium text-ink-800 shadow-sm transition hover:bg-ink-50 dark:border-ink-800 dark:bg-ink-950 dark:text-ink-100 dark:hover:bg-ink-900/40"
+			>
+				Contact page
+			</a>
+		</div>
+	</section>
 </Layout>

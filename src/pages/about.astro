@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import profile from '../assets/profile.svg';
+---
+
+<Layout title="About — Your Name" description="Bio singkat, tools, dan fokus kerja.">
+	<section class="grid gap-8 lg:grid-cols-[200px_1fr] lg:items-start">
+		<div class="overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-sm dark:border-ink-800 dark:bg-ink-950">
+			<Image src={profile} alt="Foto profil" width={800} height={800} format="webp" />
+		</div>
+
+		<div class="space-y-5">
+			<h1 class="text-3xl font-semibold tracking-tight">About</h1>
+			<p class="text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+				Halo, aku <strong class="text-ink-900 dark:text-ink-50">Your Name</strong>. Aku membangun
+				website yang minimalis, cepat, dan SEO‑friendly. Aku suka sistem desain sederhana, aksesibilitas,
+				dan codebase yang rapi.
+			</p>
+
+			<div class="space-y-2">
+				<h2 class="text-sm font-semibold tracking-tight">Stack</h2>
+				<ul class="flex flex-wrap gap-2 text-xs">
+					{['Astro', 'Tailwind', 'TypeScript', 'Node.js', 'Vercel/Netlify'].map((t) => (
+						<li class="rounded-md bg-ink-100 px-2 py-1 text-ink-700 dark:bg-ink-900/60 dark:text-ink-200">
+							{t}
+						</li>
+					))}
+				</ul>
+			</div>
+
+			<div class="space-y-2">
+				<h2 class="text-sm font-semibold tracking-tight">Links</h2>
+				<div class="flex flex-wrap gap-4 text-sm">
+					<a
+						class="text-ink-700 underline decoration-ink-300 underline-offset-4 hover:decoration-ink-700 dark:text-ink-200 dark:decoration-ink-700 dark:hover:decoration-ink-200"
+						href="https://github.com/"
+						rel="me"
+					>
+						GitHub
+					</a>
+					<a
+						class="text-ink-700 underline decoration-ink-300 underline-offset-4 hover:decoration-ink-700 dark:text-ink-200 dark:decoration-ink-700 dark:hover:decoration-ink-200"
+						href="https://www.linkedin.com/"
+						rel="me"
+					>
+						LinkedIn
+					</a>
+					<a
+						class="text-ink-700 underline decoration-ink-300 underline-offset-4 hover:decoration-ink-700 dark:text-ink-200 dark:decoration-ink-700 dark:hover:decoration-ink-200"
+						href="mailto:hello@example.com"
+					>
+						hello@example.com
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>
+

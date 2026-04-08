@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+	const posts = (await getCollection('blog')).filter((p) => !p.data.draft);
+	return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={`${post.data.title} — Your Name`} description={post.data.description}>
+	<article class="max-w-none">
+		<header class="not-prose space-y-3">
+			<a
+				href="/blog"
+				class="inline-flex text-sm text-ink-600 underline decoration-ink-300 underline-offset-4 hover:text-ink-900 hover:decoration-ink-700 dark:text-ink-300 dark:decoration-ink-700 dark:hover:text-ink-50 dark:hover:decoration-ink-200"
+			>
+				← Back to Blog
+			</a>
+			<h1 class="text-3xl font-semibold tracking-tight">{post.data.title}</h1>
+			<p class="text-sm text-ink-600 dark:text-ink-300">{post.data.description}</p>
+			<time class="text-xs text-ink-500 dark:text-ink-400" datetime={post.data.pubDate.toISOString()}>
+				{post.data.pubDate.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: '2-digit' })}
+			</time>
+		</header>
+
+		<div class="md-content mt-8 text-sm text-ink-700 dark:text-ink-200">
+			<Content />
+		</div>
+	</article>
+</Layout>
+

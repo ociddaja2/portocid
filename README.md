@@ -1,46 +1,66 @@
-# Astro Starter Kit: Basics
+# Minimal Portfolio (Astro + Tailwind)
 
-```sh
-npm create astro@latest -- --template basics
-```
+Website portfolio pribadi yang **simple & minimalis**, built dengan Astro (SSG, zero‑JS by default) + Tailwind CSS.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## ✨ Fitur
 
-## 🚀 Project Structure
+- **Layout clean**: header fixed + nav (Home, About, Projects, Blog, Contact)
+- **Pages**: `/`, `/about`, `/projects`, `/blog`, `/blog/[slug]`, `/contact`
+- **Blog Markdown**: via Astro Content Collections (`src/content/blog/`)
+- **Projects data**: via Content Collections (`src/content/projects/`)
+- **SEO**: meta tags, canonical, Open Graph, `sitemap.xml`, `rss.xml`
+- **Dark mode**: toggle kecil (inline script), tanpa framework JS
+- **Images**: via `astro:assets` (`<Image />`) + `sharp`
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📦 Project Structure
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/
+  assets/
+    profile.svg
+    projects/
+      project-1.svg
+      project-2.svg
+  components/
+    Footer.astro
+    Header.astro
+    ProjectCard.astro
+  content/
+    blog/
+      hello-world.md
+      performance-notes.md
+    projects/
+      minimal-portfolio.md
+      project-notes.md
+    config.ts
+  layouts/
+    Layout.astro
+  pages/
+    blog/
+      [slug].astro
+      index.astro
+    about.astro
+    contact.astro
+    projects.astro
+    index.astro
+    rss.xml.ts
 ```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
 
 ## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
+```bash
+npm install
+npm run dev
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- `npm run dev`: dev server `http://localhost:4321`
+- `npm run build`: build ke `dist/`
+- `npm run preview`: preview build
+- `npm run check`: typecheck Astro
 
-## 👀 Want to learn more?
+## 🌐 Deploy (Vercel / Netlify)
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Build command**: `npm run build`
+- **Output directory**: `dist`
+- (Opsional) set env **`SITE`** ke domain kamu (contoh: `https://yourdomain.com`) untuk sitemap/RSS URL yang benar.
+

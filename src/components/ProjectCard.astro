@@ -1,0 +1,69 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+
+type Project = CollectionEntry<'projects'>;
+
+type Props = {
+	project: Project;
+};
+
+const { project } = Astro.props;
+const { data } = project;
+---
+
+<article class="group overflow-hidden rounded-xl border border-ink-200 bg-white shadow-sm transition hover:shadow-soft dark:border-ink-800 dark:bg-ink-950">
+	<div class="aspect-[16/9] overflow-hidden bg-ink-100 dark:bg-ink-900/40">
+		{data.image ? (
+			<Image
+				src={data.image}
+				alt={data.title}
+				width={1200}
+				height={675}
+				format="avif"
+				loading="lazy"
+				class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+			/>
+		) : (
+			<div class="flex h-full w-full items-center justify-center text-sm text-ink-500 dark:text-ink-400">
+				No image
+			</div>
+		)}
+	</div>
+	<div class="space-y-3 p-5">
+		<div class="space-y-1">
+			<h3 class="text-base font-semibold tracking-tight">{data.title}</h3>
+			<p class="text-sm text-ink-600 dark:text-ink-300">{data.description}</p>
+		</div>
+
+		{data.tech?.length ? (
+			<ul class="flex flex-wrap gap-2">
+				{data.tech.map((t) => (
+					<li class="rounded-md bg-ink-100 px-2 py-1 text-xs text-ink-700 dark:bg-ink-900/60 dark:text-ink-200">
+						{t}
+					</li>
+				))}
+			</ul>
+		) : null}
+
+		<div class="flex flex-wrap gap-3 pt-1 text-sm">
+			{data.github ? (
+				<a
+					href={data.github}
+					class="text-ink-700 underline decoration-ink-300 underline-offset-4 hover:decoration-ink-700 dark:text-ink-200 dark:decoration-ink-700 dark:hover:decoration-ink-200"
+				>
+					GitHub
+				</a>
+			) : null}
+			{data.live ? (
+				<a
+					href={data.live}
+					class="text-ink-700 underline decoration-ink-300 underline-offset-4 hover:decoration-ink-700 dark:text-ink-200 dark:decoration-ink-700 dark:hover:decoration-ink-200"
+				>
+					Live
+				</a>
+			) : null}
+		</div>
+	</div>
+</article>
+

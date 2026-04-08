@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+	.filter((p) => !p.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout title="Blog — Your Name" description="Tulisan singkat dari Markdown (SSG, tanpa JS).">
+	<section class="space-y-5">
+		<h1 class="text-3xl font-semibold tracking-tight">Blog</h1>
+		<p class="max-w-2xl text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+			Catatan pendek tentang web performance, UI sederhana, dan belajar Astro.
+		</p>
+	</section>
+
+	<ul class="mt-10 divide-y divide-ink-200 overflow-hidden rounded-xl border border-ink-200 bg-white dark:divide-ink-800 dark:border-ink-800 dark:bg-ink-950">
+		{posts.map((post) => (
+			<li class="p-5">
+				<a href={`/blog/${post.slug}`} class="block space-y-1 rounded-md transition hover:bg-ink-50 dark:hover:bg-ink-900/40">
+					<div class="flex flex-wrap items-center justify-between gap-2">
+						<p class="text-sm font-medium">{post.data.title}</p>
+						<time class="text-xs text-ink-500 dark:text-ink-400" datetime={post.data.pubDate.toISOString()}>
+							{post.data.pubDate.toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: '2-digit' })}
+						</time>
+					</div>
+					<p class="text-sm text-ink-600 dark:text-ink-300">{post.data.description}</p>
+				</a>
+			</li>
+		))}
+	</ul>
+</Layout>
+

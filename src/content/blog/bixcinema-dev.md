@@ -9,6 +9,6 @@ tags: [Flutter, Mobile Dev]
 
 bingung dalam integrasi firebase untuk backend.
 
-<img src="/public/blog/blog-bix.png">
+<img src="/blog/blog-bix.png" >
 
-<img src="/public/blog/blog-bix2.png">
+<img src="/blog/blog-bix2.png" >

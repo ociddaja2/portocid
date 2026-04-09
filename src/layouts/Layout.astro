@@ -12,7 +12,7 @@ type Props = {
 
 const {
 	title = 'Portfolio',
-	description = 'Personal portfolio website built with Astro.',
+	description = 'Personal portfolio',
 	canonicalURL = Astro.url,
 	ogImage,
 } = Astro.props;
@@ -26,7 +26,6 @@ const canonical = canonicalURL.toString();
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 
 		<title>{title}</title>

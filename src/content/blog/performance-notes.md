@@ -2,7 +2,7 @@
 title: Catatan Performance Portofolio ini
 description: Checklist singkat.
 pubDate: 2026-04-09
-tags: [performance, seo]
+tags: [performance]
 ---
 
 Checklist yang dipakai untuk web porto ini:

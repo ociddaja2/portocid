@@ -1,14 +1,14 @@
 ---
-title: Aplikasi projek sekolah
-description: bix cinema adalah projek aplikasi pemesanan tiket bioskop.
+title: School App Projects
+description: my school projects for exam.
 pubDate: 2026-04-22
 tags: [Flutter, Mobile Dev]
 ---
 
-## Sedang Develop Aplikasi Bix cinema
+## In Development
 
 <!-- bingung dalam integrasi firebase untuk backend. -->
-Dalam pengembangan yang dikirakan selesai pada bulan mei
+The development is expected to be completed in May
 
 <img src="/blog/blog-bix.png" >
 

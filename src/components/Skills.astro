@@ -1,0 +1,88 @@
+---
+// Skills.astro — Tech stack grid
+const skills = [
+	{
+		category: 'Mobile Development',
+		icon: '📱',
+		items: [
+			{ name: 'Flutter', level: 90 },
+			{ name: 'Dart', level: 85 },
+			{ name: 'Android', level: 70 },
+		],
+	},
+	{
+		category: 'Frontend',
+		icon: '🌐',
+		items: [
+			{ name: 'React / Next.js', level: 80 },
+			{ name: 'Astro', level: 85 },
+			{ name: 'Tailwind CSS', level: 90 },
+		],
+	},
+	{
+		category: 'Backend & Core',
+		icon: '⚙️',
+		items: [
+			{ name: 'JavaScript / TS', level: 80 },
+			{ name: 'Node.js', level: 70 },
+			{ name: 'C#', level: 65 },
+		],
+	},
+	{
+		category: 'Other',
+		icon: '🔧',
+		items: [
+			{ name: 'Python', level: 70 },
+			{ name: 'Arduino / IoT', level: 75 },
+			{ name: 'Laravel / Vue', level: 65 },
+		],
+	},
+];
+---
+
+<section id="skills" class="section-gap relative">
+	<div class="glow-spot glow-cyan w-[350px] h-[350px] top-20 -left-32 opacity-50"></div>
+
+	<div class="container-main">
+		<div class="reveal text-center">
+			<span class="section-label">
+				<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+				</svg>
+				Tech Stack
+			</span>
+			<h2 class="section-title">Skills & <span class="gradient-text">Technologies</span></h2>
+			<p class="section-subtitle mx-auto">
+				The tools and frameworks I use to bring ideas to life.
+			</p>
+		</div>
+
+		<div class="mt-14 grid gap-5 sm:grid-cols-2">
+			{skills.map((group, i) => (
+				<div class="reveal glass-card glass-card-hover p-6" style={`transition-delay: ${i * 0.1}s;`}>
+					<div class="flex items-center gap-3 mb-5">
+						<span class="text-lg">{group.icon}</span>
+						<h3 class="text-sm font-bold text-white uppercase tracking-wider">{group.category}</h3>
+					</div>
+					<div class="space-y-4">
+						{group.items.map((skill) => (
+							<div>
+								<div class="flex items-center justify-between mb-1.5">
+									<span class="text-sm font-medium text-surface-300">{skill.name}</span>
+									<span class="text-xs font-mono text-surface-500">{skill.level}%</span>
+								</div>
+								<div class="h-1.5 w-full rounded-full bg-white/[0.06] overflow-hidden">
+									<div
+										class="h-full rounded-full bg-gradient-to-r from-accent to-cyan transition-all duration-1000"
+										style={`width: ${skill.level}%;`}
+									>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>

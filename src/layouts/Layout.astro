@@ -43,14 +43,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 			rel="stylesheet"
 		/>
 
+
 		<title>{title}</title>
 	</head>
 	<body>
 		<!-- Entrance Loader -->
 		<div id="page-loader" style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#060610;transition:opacity 0.6s ease,transform 0.6s ease;">
 			<div style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
-				<div style="width:3rem;height:3rem;border-radius:0.75rem;background:linear-gradient(135deg,#3b82f6,#06b6d4);display:flex;align-items:center;justify-content:center;animation:pulse 1.5s ease-in-out infinite;">
-					<span style="color:#fff;font-size:1.25rem;font-weight:800;font-family:monospace;">O</span>
+				<div style="width:3.5rem;height:3.5rem;border-radius:0.75rem;display:flex;align-items:center;justify-content:center;animation:pulse 1.5s ease-in-out infinite;">
+					<img src="/favicon.ico" alt="Logo" style="width:2.5rem;height:2.5rem;object-fit:contain;" />
 				</div>
 				<div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#64748b;">Loading...</div>
 			</div>
